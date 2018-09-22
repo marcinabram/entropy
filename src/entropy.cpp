@@ -19,13 +19,13 @@ float entropy(bool *signal, int n, int window) {
     double s = 0;
     double fchunks = double(chunks);
     for (unsigned i=0; i<parts; i++) {
-      double p = double(counter[i])/fchunks;
+      double p = double(counter[i]);
       if (p > 0) {
         s += p*log(p);
       }
     }
 
-    return -s/(window*log(2));
+    return -(s/fchunks -log(fchunks))/(window*log(2));
 }
 
 
